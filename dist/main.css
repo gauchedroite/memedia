@@ -151,7 +151,7 @@ a {
   line-height: 1;
 }
 .sterm .detail {
-  grid-template-columns: 50% 40%;
+  grid-template-columns: 50% 50%;
   padding: 3vw 0 2vw;
 }
 .sterm .data {

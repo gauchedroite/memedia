@@ -64,6 +64,7 @@ System.register("meteo", [], function (exports_1, context_1) {
         <div><span class="label">Humidité:</span> ${per.h}%</div>
         <div><span class="label">Neige:</span> ${per.sr} ${per.su}</div>
         <div><span class="label">Vents:</span> ${per.wd} ${per.w} ${per.wu}</div>
+        <div><span class="label">Rafales:</span> ${per.wg} ${per.wgu}</div>
     </div>
     <div class="data">
         <a href="#/sterm/${locid}/1" class="head ${active1}">${per1.stdayforcurrent.toLowerCase().replace(" ", "<br>")}</a>
