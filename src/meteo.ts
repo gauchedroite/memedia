@@ -44,11 +44,11 @@ interface IOBS {
     wxc: string
     tc: string
     fc: string
-    w: string
+    wk: string
     wu: string
     wd: string
     windDirection_icon: string
-    wg: string
+    windGustSpeed_knot: number
     wgu: string
     h: string
     sunrise_gmt: number
@@ -134,9 +134,9 @@ const renderObs = (obs: IOBS) => {
         <div><span class="label">Lever:</span> ${obs.sunrise_time}</div>
         <div><span class="label">Humidité:</span> ${obs.h}%</div>
         <div><span class="label">Coucher:</span> ${obs.sunset_time}</div>
-        <div><span class="label">Vents:</span> ${obs.wd} ${obs.w} ${obs.wu}</div>
+        <div><span class="label">Vents:</span> ${obs.wd} ${obs.wk} ${obs.wu}</div>
         <div></div>
-        <div><span class="label">Rafales:</span> ${obs.wg} ${obs.wgu}</div>
+        <div><span class="label">Rafales:</span> ${Math.round(obs.windGustSpeed_knot * 1.852)} ${obs.wgu}</div>
     </div>
     <div class="updated">
         Émis le: ${moment(+obs.updatetime_stamp_gmt).format("LLL")}
@@ -223,11 +223,10 @@ const renderSeven = (seven: ISevendays) => {
     </div>
     <div class="detail">
         <div><span class="label">T.Min:</span> ${per.tm}<span>°C</span></div>
-        <div><span class="label">Humidité:</span> 85%</div>
-        <div><span class="label">P.D.P.:</span> ${per.pdp}%</div>
         <div><span class="label">Pluie:</span> ${per.metric_rain}</div>
-        <div><span class="label">Vents:</span> ${per.w} ${per.wu}</div>
+        <div><span class="label">P.D.P.:</span> ${per.pdp}%</div>
         <div><span class="label">Neige:</span> ${per.metric_snow}</div>
+        <div><span class="label">Vents:</span> ${per.w} ${per.wu}</div>
     </div>
     <div class="data">
         <a href="#/seven/${locid}/1" class="head ${active1}">${per1.sd.split(" ")[0]}</s>
@@ -299,6 +298,7 @@ export const fetchObs = (param: string) => {
         .then(res => res.json())
         .then(json => {
             cm = json;
+            console.log(cm);
             localStorage.setItem("cm", JSON.stringify(cm));
             return renderObs(cm.obs);
         });

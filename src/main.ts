@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //fetchAlerts("qc-126").then(url => console.log(url));
 
     localStorage.clear();
-    (<any>document).location = `#/obs/caqc0177/3`;
+    (<any>document).location = `#/obs/caqc0177`;
+    //(<any>document).location = `#/sterm/caqc0177/1`;
     
 });

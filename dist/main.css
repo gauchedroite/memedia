@@ -41,7 +41,7 @@ a {
   border-bottom: 2px solid rgba(255, 255, 255, 0.25);
 }
 .main {
-  padding: 10vw 4vw 0 8vw;
+  padding: 0 4vw 0 8vw;
   height: 100%;
   position: relative;
 }
@@ -95,6 +95,9 @@ a {
 .detail div .label {
   color: #ffd400;
 }
+.obs .location {
+  padding-top: 10vw;
+}
 .obs .general .feel {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
@@ -120,6 +123,9 @@ a {
   margin-top: 5vw;
   padding: 2vw 0;
   font-size: 65%;
+}
+.sterm .location {
+  padding-top: 5vw;
 }
 .sterm .for-date {
   font-size: 75%;
@@ -186,6 +192,9 @@ a {
 }
 .sterm .data .active {
   background-color: rgba(0, 0, 0, 0.15);
+}
+.seven .location {
+  padding-top: 5vw;
 }
 .seven .for-date {
   font-size: 75%;
