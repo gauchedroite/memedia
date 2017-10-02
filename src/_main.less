@@ -1,0 +1,347 @@
+@yellow: rgb(255, 212, 0);
+@white25: rgba(255, 255, 255, 0.25);
+
+html { 
+    height: 100%; 
+    width: 100%; 
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    font-family: 'Roboto', sans-serif;
+    font-size: 5.75vw;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(0deg, rgb(41, 145, 211) 10%, rgb(3, 66, 163) 90%, black);
+    text-shadow: 1px 1px 2px #111;
+    overflow: hidden;
+}
+
+.top-bar {
+    background-color: @yellow;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    color: rgb(0, 56, 118);
+    padding: 1.5% 40px;
+    font-weight: 700;
+    line-height: 0.9;
+}
+
+.title {
+    background-color: rgb(0, 54, 115);
+    padding: 1% 3%;
+    border-bottom: 2px solid @white25;
+}
+
+.main {
+    padding: 10vw 4vw 0 8vw;
+    height: 100%;
+    position: relative;
+
+    .soleil {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.15;
+        background-image: url(accuweather_icon.png);
+        background-position: bottom 10vw left 25vw;
+        background-repeat: no-repeat;
+        background-size: 100vw;
+        pointer-events: none;
+    }
+}
+
+.general {
+    margin-top: 4%;
+    display: grid;
+    grid-template-columns: 20vw 25vw 45vw;
+    grid-template-rows: 12vw 8vw;
+
+    .icon {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        width: 20vw;
+        height: 20vw;
+        
+        div {
+            width: auto;
+            height: 100%;
+        }
+    }
+    
+    .temp {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        font-size: 11vw;
+        text-align: right;
+        
+        span {
+            font-size: 5vw;
+            vertical-align: super;
+        }
+    }
+}
+
+.detail {
+    padding: 2vw 0;
+    display: grid;
+
+    div {
+        font-size: 4.75vw;
+        padding: 0.3vw 0;
+
+        .label {
+            color: @yellow;
+        }
+    }
+}
+
+.obs {
+    .general {
+        .feel {
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            font-size: 3.5vw;
+            text-align: right;
+            color: @yellow;
+        }
+        
+        .desc {
+            grid-column: 3 / 4;
+            grid-row: 1 / 3;
+            padding-left: 5vw;
+            padding-right: 1vw;
+            font-size: 90%;
+        }
+    }
+
+    .detail {
+        grid-template-columns: 45% 50%;
+        margin-top: 10vw;
+        border-top: 1px solid @white25;
+        border-bottom: 1px solid @white25;
+        padding: 2vw 0;
+    }
+    
+    .updated {
+        margin-top: 5vw;
+        padding: 2vw 0;
+        font-size: 65%;
+    }
+}
+
+.sterm {
+    .for-date {
+        font-size: 75%;
+        color: @yellow;
+    }
+
+    .general {
+        .feel {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+            font-size: 4vw;
+            margin-left: 4vw;
+            padding-left: 2vw;
+            color: @yellow;
+            border-left: 1px solid @white25;
+
+            div {
+                font-size: 6vw;
+            }
+        }
+        
+        .desc {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+            padding-left: 7vw;
+            font-size: 90%;
+            line-height: 1;
+        }
+    }
+
+    .detail {
+        grid-template-columns: 50% 40%;
+        padding: 3vw 0 2vw;
+    }
+
+    .data {
+        margin-top: 1vw;
+        display: grid;
+        grid-template-columns: repeat(3, 29vw);
+        grid-template-rows: 12vw 15vw 10vw;
+        text-align: center;
+
+        &>a {
+            border-right: 1px solid @white25;
+            &.last {
+                border-right: none;
+            }
+        }
+
+        a.head {
+            padding: 1vw;
+            background-color: rgba(0, 0, 0, 0.1);
+            font-size: 75%;
+            border-top: 1px solid @white25;
+            border-bottom: 1px solid @white25;
+
+            &.active {
+                background-color: rgba(0 ,0, 0, 0.3);
+            }
+        }
+        
+        a.icon {
+            padding: 0 calc(7vw - 0.5px);
+            width: 15vw;
+            height: 15vw;
+            
+            div {
+                width: auto;
+                height: 100%;
+            }
+
+            div.temp {
+                span {
+                    font-size: 75%;
+                    vertical-align: text-top;
+                }
+            }
+        }
+
+        .active {
+            background-color: rgba(0 ,0, 0, 0.15);
+        }
+    }
+}
+
+.seven {
+    .for-date {
+        font-size: 75%;
+        color: @yellow;
+    }
+
+    .general {
+        .feel {
+            grid-column: 3 / 4;
+            grid-row: 1 / 2;
+            font-size: 4vw;
+            margin-left: 4vw;
+            padding-left: 2vw;
+            color: @yellow;
+            border-left: 1px solid @white25;
+
+            div {
+                font-size: 6vw;
+            }
+        }
+        
+        .desc {
+            grid-column: 2 / 4;
+            grid-row: 2 / 3;
+            padding-left: 7vw;
+            font-size: 90%;
+            line-height: 1;
+        }
+    }
+
+    .detail {
+        grid-template-columns: 43% 57%;
+        padding: 3vw 0 2vw;
+    }
+
+    .data {
+        margin-top: 1vw;
+        display: grid;
+        grid-template-columns: repeat(5, 17vw);
+        grid-template-rows: 7vw 15vw 6vw 8vw;
+        text-align: center;
+
+        &>a {
+            border-right: 1px solid @white25;
+            &.last {
+                border-right: none;
+            }
+        }
+        
+        a.head {
+            padding: 1vw;
+            background-color: rgba(0, 0, 0, 0.1);
+            font-size: 70%;
+            border-top: 1px solid @white25;
+            border-bottom: 1px solid @white25;
+
+            &.active {
+                background-color: rgba(0 ,0, 0, 0.3);
+            }
+        }
+        
+        a.icon {
+            padding: 2vw calc(3vw - 0.5px);
+            width: 11vw;
+            height: 11vw;
+            
+            div {
+                width: auto;
+                height: 100%;
+            }
+        }
+
+        a.temp {
+            font-size: 85%;
+            span {
+                font-size: 75%;
+                vertical-align: text-top;
+            }
+        }
+
+        .active {
+            background-color: rgba(0 ,0, 0, 0.15);
+        }
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(2, 48.5vw);
+        grid-gap: 1vw 1vw;
+        margin: 1vw;
+        
+        a {
+            padding: 5.5vw 2vw;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 1vw;
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+            background: linear-gradient(0deg, rgba(3, 66, 163, 0.5), rgba(41, 145, 211, 0.5));
+
+            &.active {
+                background: linear-gradient(0deg, rgba(3, 66, 163, 0.75), rgba(41, 145, 211, 0.75));
+                border-color: @yellow;
+                color: @yellow;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "memedia",
+  "version": "1.0.0",
+  "description": "My MeteoMedia app",
+  "main": "index.html",
+  "author": "Christian Trépanier",
+  "license": "MIT",
+  "scripts": {
+    "less": "lessc --strict-math=on src/_main.less dist/main.css",
+    "less:w": "nodemon -e less -w ./ -x \"npm run less\"",
+    "http": "lite-server",
+    "dev": "concurrently \"tsc -w\" \"npm run less:w\" \"npm run http\" ",
+    "pages": "git checkout gh-pages && git merge master && git push origin gh-pages && git checkout master"
+  },
+  "dependencies": {
+    "systemjs": "^0.20.19"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "less": "^2.7.2",
+    "typescript": "^2.5.2"
+  },
+  "optionalDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
