@@ -1,5 +1,7 @@
 "use strict"
 
+declare const FastClick: any;
+
 import {fetchObs, fetchSterm, fetchSeven, locid} from "meteo";
 import {addRoute} from "router";
 
@@ -30,6 +32,8 @@ const render = (context: string, body: string) => {
 
 
 document.addEventListener("DOMContentLoaded", function (event) {
+
+    FastClick.attach(document.body);    
 
     addRoute("^#/obs/(.*)$", param => { fetchObs(param).then((html: string) => { render("obs", html); }) });
     addRoute("^#/sterm/(.*)$", param => { fetchSterm(param).then((html: string) => { render("sterm", html); }) });
