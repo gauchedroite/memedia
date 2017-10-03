@@ -299,7 +299,6 @@ export const fetchObs = (param: string) => {
         .then(res => res.json())
         .then(json => {
             cm = json;
-            console.log(cm);
             localStorage.setItem("cm", JSON.stringify(cm));
             return renderObs(cm.obs);
         });

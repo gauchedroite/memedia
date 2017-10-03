@@ -186,7 +186,6 @@ System.register("meteo", [], function (exports_1, context_1) {
                         .then(res => res.json())
                         .then(json => {
                         cm = json;
-                        console.log(cm);
                         localStorage.setItem("cm", JSON.stringify(cm));
                         return renderObs(cm.obs);
                     });
@@ -300,6 +299,7 @@ System.register("main", ["meteo", "router"], function (exports_3, context_3) {
                 app.innerHTML = menu(context, body);
             };
             document.addEventListener("DOMContentLoaded", function (event) {
+                FastClick.attach(document.body);
                 router_1.addRoute("^#/obs/(.*)$", param => { meteo_1.fetchObs(param).then((html) => { render("obs", html); }); });
                 router_1.addRoute("^#/sterm/(.*)$", param => { meteo_1.fetchSterm(param).then((html) => { render("sterm", html); }); });
                 router_1.addRoute("^#/seven/(.*)$", param => { meteo_1.fetchSeven(param).then((html) => { render("seven", html); }); });
