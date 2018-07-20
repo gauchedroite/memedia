@@ -1,7 +1,11 @@
 
+import { ISkiData } from "./ski-de-fond";
+import { ILocation, getLocation, getNextLocation } from "./data"
+
 declare const moment: any;
 
 interface ICM {
+    code: string
     obs: IOBS
     sterm: ISTerm
     sevendays: ISevendays
@@ -116,12 +120,13 @@ let alerts = {};
 let stermid = 1;
 let sevenid = 1;
 export let locid: string;
+let location: ILocation;
 
-const renderObs = (obs: IOBS) => {
+export const renderObs = (obs: IOBS, sdf: ISkiData) => {
     return `
 <div class="title">Conditions actuelles</div>
 <div class="main">
-    <div class="location">Gatineau, QC, Canada</div>
+    <div class="location">${location.name}, QC, Canada</div>
     <div class="general">
         <div class="icon">
             <div style="background: url(${obs.image_url}/icons/wxicons_large/${obs.icon}.png); background-size: cover;">&nbsp;</div>
@@ -135,18 +140,27 @@ const renderObs = (obs: IOBS) => {
         <div><span class="label">Humidité:</span> ${obs.h}%</div>
         <div><span class="label">Coucher:</span> ${obs.sunset_time}</div>
         <div><span class="label">Vents:</span> ${obs.wd} ${obs.wk} ${obs.wu}</div>
-        <div></div>
+        <div><span class="label">Semaine:</span> ${sdf.weekSun}</div>
         <div><span class="label">Rafales:</span> ${Math.round(obs.windGustSpeed_knot * 1.852)} ${obs.wgu}</div>
     </div>
     <div class="updated">
         Émis le: ${moment(+obs.updatetime_stamp_gmt).format("LLL")}
     </div>
+    <!--
+    <div class="detail">
+        <div><span class="label">Cire:</span> ${obs.sunrise_time}</div>
+        <div><span class="label">P8:</span> ${obs.h}</div>
+    </div>
+    <div class="updated">
+        Émis le: ${moment(+obs.updatetime_stamp_gmt).format("LLL")}
+    </div>
+    -->
     <div class="soleil"></div>
 </div>
 `;
 };
 
-const renderSterm = (sterm: ISTerm) => {
+export const renderSterm = (sterm: ISTerm) => {
     let per = sterm.periods[stermid - 1];
     let per1 = sterm.periods[0];
     let per2 = sterm.periods[1];
@@ -157,7 +171,7 @@ const renderSterm = (sterm: ISTerm) => {
     return `
 <div class="title">Prévisions à court terme</div>
 <div class="main">
-    <div class="location">Gatineau, QC, Canada</div>
+    <div class="location">${location.name}, QC, Canada</div>
     <div class="for-date">${per.stdayforcurrent}</div>
     <div class="general">
         <div class="icon">
@@ -197,7 +211,7 @@ const renderSterm = (sterm: ISTerm) => {
 `;
 };
 
-const renderSeven = (seven: ISevendays) => {
+export const renderSeven = (seven: ISevendays) => {
     let per = seven.periods[sevenid - 1];
     let per1 = seven.periods[0];
     let per2 = seven.periods[1];
@@ -212,7 +226,7 @@ const renderSeven = (seven: ISevendays) => {
     return `
 <div class="title">Tendance à long terme</div>
 <div class="main">
-    <div class="location">Gatineau, QC, Canada</div>
+    <div class="location">${location.name}, QC, Canada</div>
     <div class="for-date">${moment(per.tsl).format("dddd, D MMMM YYYY")}</div>
     <div class="general">
         <div class="icon">
@@ -293,40 +307,62 @@ const renderHourly = (days: IDays[]) => {
     }, "")
 };
 
-export const fetchObs = (param: string) => {
+const fetchLatestCm = (param: string) => {
+    locid = param;
+    location = getLocation(locid);
     if (localStorage.getItem("cm") == null) {
         return window.fetch(`https://www.meteomedia.com/api/data/${param}/cm`)
         .then(res => res.json())
         .then(json => {
             cm = json;
             localStorage.setItem("cm", JSON.stringify(cm));
-            return renderObs(cm.obs);
+            return cm;
         });
-    } else {
-        return new Promise(function (resolve, reject) {
-            locid = param;
-            cm = JSON.parse(localStorage.getItem("cm"));
-            resolve(renderObs(cm.obs));
+    }
+    else {
+        cm = <ICM>JSON.parse(localStorage.getItem("cm"));
+        if (cm.code != locid) {
+            localStorage.removeItem("cm");
+            return fetchLatestCm(locid);
+        }
+        else
+            return new Promise<ICM>(function (resolve, reject) {
+                resolve(cm);
         });
     }
 };
 
+export const fetchObsRaw = (param: string) => {
+    locid = param;
+    location = getLocation(locid);
+    return fetchLatestCm(locid)
+    .then(cm => {
+        return cm.obs;
+    });
+};
+
 export const fetchSterm = (param: string) => {
-    return new Promise(function (resolve, reject) {
-        locid = param.split("/")[0];
-        stermid = +param.split("/")[1];
-        cm = JSON.parse(localStorage.getItem("cm"));
-        resolve(renderSterm(cm.sterm));
+    locid = param.split("/")[0];
+    stermid = +param.split("/")[1];
+    location = getLocation(locid);
+    return fetchLatestCm(locid)
+    .then(cm => {
+        return cm.sterm;
     });
 };
 
 export const fetchSeven = (param: string) => {
-    return new Promise(function (resolve, reject) {
-        locid = param.split("/")[0];
-        sevenid = +param.split("/")[1];
-        cm = JSON.parse(localStorage.getItem("cm"));
-        resolve(renderSeven(cm.sevendays));
+    locid = param.split("/")[0];
+    location = getLocation(locid);
+    sevenid = +param.split("/")[1];
+    return fetchLatestCm(locid)
+    .then(cm => {
+        return cm.sevendays;
     });
+    // return new Promise<string>(function (resolve, reject) {
+    //     cm = JSON.parse(localStorage.getItem("cm"));
+    //     resolve(renderSeven(cm.sevendays));
+    // });
 };
 
 export const fetchAlerts = (id: string) => {
