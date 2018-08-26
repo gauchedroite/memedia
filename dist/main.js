@@ -24,6 +24,12 @@ System.register("data", [], function (exports_1, context_1) {
                 latitude: 48.4236,
                 longitude: -71.2395
             });
+            locations.push({
+                id: "caqc2288",
+                name: "Cookshire",
+                latitude: 45.4131,
+                longitude: -71.6263
+            });
             exports_1("getLocation", getLocation = (id) => {
                 return locations.find(element => { return element.id == id; });
             });
@@ -723,6 +729,7 @@ System.register("main", ["meteo", "ski-de-fond", "router", "data"], function (ex
                 //(<any>document).location = `#/obs/caqc0177`; // Gatineau
                 //(<any>document).location = `#/obs/caqc0312`; // Lévis
                 //(<any>document).location = `#/obs/caqc0222`; // Jonquière
+                //(<any>document).location = `#/obs/caqc2388`; // Cookshire-Eaton
             });
         }
     };

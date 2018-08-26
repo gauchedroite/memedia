@@ -85,5 +85,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //(<any>document).location = `#/obs/caqc0177`; // Gatineau
     //(<any>document).location = `#/obs/caqc0312`; // Lévis
     //(<any>document).location = `#/obs/caqc0222`; // Jonquière
+    //(<any>document).location = `#/obs/caqc2388`; // Cookshire-Eaton
     
 });

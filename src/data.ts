@@ -25,6 +25,12 @@ locations.push({
     latitude: 48.4236,
     longitude: -71.2395
 })
+locations.push({
+    id: "caqc2288",
+    name: "Cookshire",
+    latitude: 45.4131,
+    longitude: -71.6263
+})
 
 
 export const getLocation = (id: string) => {
