@@ -1,7 +1,7 @@
 System.register("data", [], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var locations, getLocation, getNextLocation;
+    var __moduleName = context_1 && context_1.id;
     return {
         setters: [],
         execute: function () {
@@ -25,7 +25,7 @@ System.register("data", [], function (exports_1, context_1) {
                 longitude: -71.2395
             });
             locations.push({
-                id: "caqc2288",
+                id: "caqc0123",
                 name: "Cookshire",
                 latitude: 45.4131,
                 longitude: -71.6263
@@ -308,8 +308,8 @@ System.register("soleil", [], function (exports_2, context_2) {
 });
 System.register("ski-de-fond", ["soleil", "data"], function (exports_3, context_3) {
     "use strict";
-    var __moduleName = context_3 && context_3.id;
     var soleil_1, data_1, fetchSdf;
+    var __moduleName = context_3 && context_3.id;
     return {
         setters: [
             function (soleil_1_1) {
@@ -349,8 +349,8 @@ System.register("ski-de-fond", ["soleil", "data"], function (exports_3, context_
 });
 System.register("meteo", ["data"], function (exports_4, context_4) {
     "use strict";
-    var __moduleName = context_4 && context_4.id;
     var data_2, cm, alerts, stermid, sevenid, locid, location, renderObs, renderSterm, renderSeven, renderFourteen, renderHourly, fetchLatestCm, fetchObsRaw, fetchSterm, fetchSeven, fetchAlerts;
+    var __moduleName = context_4 && context_4.id;
     return {
         setters: [
             function (data_2_1) {
@@ -619,8 +619,8 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
 });
 System.register("router", [], function (exports_5, context_5) {
     "use strict";
-    var __moduleName = context_5 && context_5.id;
     var addRoute, hashChange, router;
+    var __moduleName = context_5 && context_5.id;
     return {
         setters: [],
         execute: function () {
@@ -645,8 +645,8 @@ System.register("router", [], function (exports_5, context_5) {
 });
 System.register("main", ["meteo", "ski-de-fond", "router", "data"], function (exports_6, context_6) {
     "use strict";
-    var __moduleName = context_6 && context_6.id;
     var meteo_1, ski_de_fond_1, router_1, data_3, layout, render;
+    var __moduleName = context_6 && context_6.id;
     return {
         setters: [
             function (meteo_1_1) {

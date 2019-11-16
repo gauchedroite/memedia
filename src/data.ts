@@ -26,7 +26,7 @@ locations.push({
     longitude: -71.2395
 })
 locations.push({
-    id: "caqc2288",
+    id: "caqc0123",
     name: "Cookshire",
     latitude: 45.4131,
     longitude: -71.6263
