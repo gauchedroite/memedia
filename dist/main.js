@@ -546,7 +546,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
                 exports_4("locid", locid = param);
                 location = data_2.getLocation(locid);
                 if (localStorage.getItem("cm") == null) {
-                    return window.fetch(`https://uvehl88lqe.execute-api.us-east-1.amazonaws.com/test/helloworld`)
+                    return window.fetch(`https://h0th8gm47e.execute-api.us-east-1.amazonaws.com/api/data?cm=${param}`)
                         .then(res => res.json())
                         .then(json => {
                         cm = json;
