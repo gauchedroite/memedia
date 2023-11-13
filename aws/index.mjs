@@ -14,13 +14,14 @@ export const handler = async (event, context) => {
         },
     }
     
+    // Note: With a lambda-proxy enabled in API Gateway, CORS headers need to be set manually
     const response = await new Promise((resolve, reject) => {
       const req = https.request(options, (res) => {
         let data = '';
         res.on('data', (chunk) => (data += chunk));
         res.on('end', () => resolve({
           statusCode: res.statusCode,
-          headers: res.headers,
+          headers: { "Access-Control-Allow-Origin": "https://gauchedroite.github.io" },
           body: data,
         }));
       });
