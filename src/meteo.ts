@@ -123,6 +123,8 @@ export let locid: string;
 let location: ILocation;
 
 export const renderObs = (obs: IOBS, sdf: ISkiData) => {
+    const wd = obs.wd?.replace(".", "").replace("-", "") ?? "0"
+
     return `
 <div class="title">Conditions actuelles</div>
 <div class="main">
@@ -139,7 +141,7 @@ export const renderObs = (obs: IOBS, sdf: ISkiData) => {
         <div><span class="label">Lever:</span> ${obs.sunrise_time}</div>
         <div><span class="label">Humidité:</span> ${obs.h}%</div>
         <div><span class="label">Coucher:</span> ${obs.sunset_time}</div>
-        <div><span class="label">Vents:</span> ${obs.wd} ${obs.wk} ${obs.wu}</div>
+        <div><span class="label">Vents:</span> ${wd} ${obs.wk} ${obs.wu}</div>
         <div><span class="label">Semaine:</span> ${sdf.weekSun}</div>
         <div><span class="label">Rafales:</span> ${Math.round(obs.windGustSpeed_knot * 1.852)} ${obs.wgu}</div>
     </div>
