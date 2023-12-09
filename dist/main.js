@@ -363,7 +363,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
             stermid = 1;
             sevenid = 1;
             exports_4("renderObs", renderObs = (obs, sdf) => {
-                const wd = obs.wd?.replace(".", "").replace("-", "") ?? "0"
+                const obs_wd = obs.wd?.replace(".", "").replace("-", "") ?? "0"
                 return `
 <div class="title">Conditions actuelles</div>
 <div class="main">
@@ -380,7 +380,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         <div><span class="label">Lever:</span> ${obs.sunrise_time}</div>
         <div><span class="label">Humidité:</span> ${obs.h}%</div>
         <div><span class="label">Coucher:</span> ${obs.sunset_time}</div>
-        <div><span class="label">Vents:</span> ${wd} ${obs.wk} ${obs.wu}</div>
+        <div><span class="label">Vents:</span> ${obs_wd} ${obs.wk} ${obs.wu}</div>
         <div><span class="label">Semaine:</span> ${sdf.weekSun}</div>
         <div><span class="label">Rafales:</span> ${Math.round(obs.windGustSpeed_knot * 1.852)} ${obs.wgu}</div>
     </div>
@@ -408,6 +408,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
                 let active1 = (stermid == 1 ? "active" : "");
                 let active2 = (stermid == 2 ? "active" : "");
                 let active3 = (stermid == 3 ? "active" : "");
+                const per_wd = per.wd?.replace(".", "").replace("-", "") ?? "0"
                 return `
 <div class="title">Prévisions à court terme</div>
 <div class="main">
@@ -426,7 +427,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         <div><span class="label">Pluie:</span> ${per.rr} ${per.ru}</div>
         <div><span class="label">Humidité:</span> ${per.h}%</div>
         <div><span class="label">Neige:</span> ${per.sr} ${per.su}</div>
-        <div><span class="label">Vents:</span> ${per.wd} ${per.w} ${per.wu}</div>
+        <div><span class="label">Vents:</span> ${per_wd} ${per.w} ${per.wu}</div>
         <div><span class="label">Rafales:</span> ${per.wg} ${per.wgu}</div>
     </div>
     <div class="data">
@@ -462,6 +463,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
                 let active3 = (sevenid == 3 ? "active" : "");
                 let active4 = (sevenid == 4 ? "active" : "");
                 let active5 = (sevenid == 5 ? "active" : "");
+                const per_w = per.w?.replace(".", "").replace("-", "") ?? "0"
                 return `
 <div class="title">Tendance à long terme</div>
 <div class="main">
@@ -480,7 +482,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         <div><span class="label">Pluie:</span> ${per.metric_rain}</div>
         <div><span class="label">P.D.P.:</span> ${per.pdp}%</div>
         <div><span class="label">Neige:</span> ${per.metric_snow}</div>
-        <div><span class="label">Vents:</span> ${per.w} ${per.wu}</div>
+        <div><span class="label">Vents:</span> ${per_w} ${per.wu}</div>
     </div>
     <div class="data">
         <a href="#/seven/${locid}/1" class="head ${active1}">${per1.sd.split(" ")[0]}</s>
