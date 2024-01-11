@@ -363,7 +363,8 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
             stermid = 1;
             sevenid = 1;
             exports_4("renderObs", renderObs = (obs, sdf) => {
-                const obs_wd = obs.wd?.replace(".", "").replace("-", "") ?? "0"
+                var _a, _b;
+                const obs_wd = (_b = (_a = obs.wd) === null || _a === void 0 ? void 0 : _a.replace(/\./g, "").replace(/-/g, "")) !== null && _b !== void 0 ? _b : "0";
                 return `
 <div class="title">Conditions actuelles</div>
 <div class="main">
@@ -401,6 +402,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
 `;
             });
             exports_4("renderSterm", renderSterm = (sterm) => {
+                var _a, _b;
                 let per = sterm.periods[stermid - 1];
                 let per1 = sterm.periods[0];
                 let per2 = sterm.periods[1];
@@ -408,7 +410,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
                 let active1 = (stermid == 1 ? "active" : "");
                 let active2 = (stermid == 2 ? "active" : "");
                 let active3 = (stermid == 3 ? "active" : "");
-                const per_wd = per.wd?.replace(".", "").replace("-", "") ?? "0"
+                const per_wd = (_b = (_a = per.wd) === null || _a === void 0 ? void 0 : _a.replace(/\./g, "").replace(/-/g, "")) !== null && _b !== void 0 ? _b : "0";
                 return `
 <div class="title">Prévisions à court terme</div>
 <div class="main">
@@ -452,6 +454,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
 `;
             });
             exports_4("renderSeven", renderSeven = (seven) => {
+                var _a, _b;
                 let per = seven.periods[sevenid - 1];
                 let per1 = seven.periods[0];
                 let per2 = seven.periods[1];
@@ -463,7 +466,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
                 let active3 = (sevenid == 3 ? "active" : "");
                 let active4 = (sevenid == 4 ? "active" : "");
                 let active5 = (sevenid == 5 ? "active" : "");
-                const per_w = per.w?.replace(".", "").replace("-", "") ?? "0"
+                const per_w = (_b = (_a = per.w) === null || _a === void 0 ? void 0 : _a.replace(/\./g, "").replace(/-/g, "")) !== null && _b !== void 0 ? _b : "0";
                 return `
 <div class="title">Tendance à long terme</div>
 <div class="main">

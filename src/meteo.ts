@@ -123,7 +123,7 @@ export let locid: string;
 let location: ILocation;
 
 export const renderObs = (obs: IOBS, sdf: ISkiData) => {
-    const obs_wd = obs.wd?.replace(".", "").replace("-", "") ?? "0"
+    const obs_wd = obs.wd?.replace(/\./g, "").replace(/-/g, "") ?? "0"
     return `
 <div class="title">Conditions actuelles</div>
 <div class="main">
@@ -169,7 +169,7 @@ export const renderSterm = (sterm: ISTerm) => {
     let active1 = (stermid == 1 ? "active" : "");
     let active2 = (stermid == 2 ? "active" : "");
     let active3 = (stermid == 3 ? "active" : "");
-    const per_wd = per.wd?.replace(".", "").replace("-", "") ?? "0"
+    const per_wd = per.wd?.replace(/\./g, "").replace(/-/g, "") ?? "0"
     return `
 <div class="title">Prévisions à court terme</div>
 <div class="main">
@@ -225,7 +225,7 @@ export const renderSeven = (seven: ISevendays) => {
     let active3 = (sevenid == 3 ? "active" : "");
     let active4 = (sevenid == 4 ? "active" : "");
     let active5 = (sevenid == 5 ? "active" : "");
-    const per_w = per.w?.replace(".", "").replace("-", "") ?? "0"
+    const per_w = per.w?.replace(/\./g, "").replace(/-/g, "") ?? "0"
     return `
 <div class="title">Tendance à long terme</div>
 <div class="main">
