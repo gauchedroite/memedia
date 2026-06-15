@@ -349,7 +349,7 @@ System.register("ski-de-fond", ["soleil", "data"], function (exports_3, context_
 });
 System.register("meteo", ["data"], function (exports_4, context_4) {
     "use strict";
-    var data_2, cm, alerts, stermid, sevenid, locid, location, renderObs, renderSterm, renderSeven, renderFourteen, renderHourly, fetchLatestCm, fetchObsRaw, fetchSterm, fetchSeven, fetchAlerts;
+    var data_2, cm, alerts, stermid, sevenid, locid, location, renderObs, renderSterm, renderSeven, renderFourteen, renderHourly, PELMOREX_BASE, fetchLatestCm, fetchObsRaw, fetchSterm, fetchSeven, fetchAlerts;
     var __moduleName = context_4 && context_4.id;
     return {
         setters: [
@@ -371,7 +371,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
     <div class="location">${location.name}, QC, Canada</div>
     <div class="general">
         <div class="icon">
-            <div style="background: url(${obs.image_url}/icons/wxicons_large/${obs.icon}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(${obs.image_url}${obs.icon}.png); background-size: cover;">&nbsp;</div>
         </div>
         <div class="temp">${obs.tc}<span>°C</span></div>
         <div class="feel">T. ressentie: ${obs.fc}</div>
@@ -418,7 +418,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
     <div class="for-date">${per.stdayforcurrent}</div>
     <div class="general">
         <div class="icon">
-            <div style="background: url(//s2.twnmm.com/images/fr_ca/icons/wxicons_medium/${per.icon}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per.icon}.png); background-size: cover;">&nbsp;</div>
         </div>
         <div class="temp">${per.t}<span>°C</span></div>
         <div class="feel">T. ressentie: <div>${per.f}</div></div>
@@ -437,13 +437,13 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         <a href="#/sterm/${locid}/2" class="head ${active2}">${per2.stdayforcurrent.toLowerCase().replace(" ", "<br>")}</a>
         <a href="#/sterm/${locid}/3" class="head ${active3} last">${per3.stdayforcurrent.toLowerCase().replace(" ", "<br>")}</a>
         <a href="#/sterm/${locid}/1" class="icon ${active1}">
-            <div style="background: url(//s2.twnmm.com/images/fr_ca/icons/wxicons_medium/${per1.icon}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per1.icon}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/sterm/${locid}/2" class="icon ${active2}">
-            <div style="background: url(//s2.twnmm.com/images/fr_ca/icons/wxicons_medium/${per2.icon}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per2.icon}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/sterm/${locid}/3" class="icon ${active3} last">
-            <div style="background: url(//s2.twnmm.com/images/fr_ca/icons/wxicons_medium/${per3.icon}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per3.icon}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/sterm/${locid}/1" class="temp ${active1}">${per1.t}<span>°C</span></a>
         <a href="#/sterm/${locid}/2" class="temp ${active2}">${per2.t}<span>°C</span></a>
@@ -474,7 +474,7 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
     <div class="for-date">${moment(per.tsl).format("dddd, D MMMM YYYY")}</div>
     <div class="general">
         <div class="icon">
-            <div style="background: url(//s2.twnmm.com/images/fr_ca/icons/wxicons_medium/${per.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per.ida}.png); background-size: cover;">&nbsp;</div>
         </div>
         <div class="temp">${per.tma}<span>°C</span></div>
         <div class="feel">T. ressentie: <div>${per.f}</div></div>
@@ -494,19 +494,19 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         <a href="#/seven/${locid}/4" class="head ${active4}">${per4.sd.split(" ")[0]}</a>
         <a href="#/seven/${locid}/5" class="head ${active5} last">${per5.sd.split(" ")[0]}</a>
         <a href="#/seven/${locid}/1" class="icon ${active1}">
-            <div style="background: url(//s1.twnmm.com/images/fr_ca/icons/wxicons_small/${per1.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per1.ida}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/seven/${locid}/2" class="icon ${active2}">
-            <div style="background: url(//s1.twnmm.com/images/fr_ca/icons/wxicons_small/${per2.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per2.ida}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/seven/${locid}/3" class="icon ${active3}">
-            <div style="background: url(//s1.twnmm.com/images/fr_ca/icons/wxicons_small/${per3.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per3.ida}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/seven/${locid}/4" class="icon ${active4}">
-            <div style="background: url(//s1.twnmm.com/images/fr_ca/icons/wxicons_small/${per4.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per4.ida}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/seven/${locid}/5" class="icon ${active5} last">
-            <div style="background: url(//s1.twnmm.com/images/fr_ca/icons/wxicons_small/${per5.ida}.png); background-size: cover;">&nbsp;</div>
+            <div style="background: url(https://icons.twnmm.com/wx_icons/v2/${per5.ida}.png); background-size: cover;">&nbsp;</div>
         </a>
         <a href="#/seven/${locid}/1" class="temp ${active1}">${per1.tma}<span>°C</span></a>
         <a href="#/seven/${locid}/2" class="temp ${active2}">${per2.tma}<span>°C</span></a>
@@ -548,29 +548,94 @@ System.register("meteo", ["data"], function (exports_4, context_4) {
         `;
                 }, "");
             };
+            PELMOREX_BASE = "https://weatherapi.pelmorex.com/api/v1";
             fetchLatestCm = (param) => {
                 exports_4("locid", locid = param);
                 location = data_2.getLocation(locid);
-                if (localStorage.getItem("cm") == null) {
-                    return window.fetch(`https://www.meteomedia.com/api/data/${param}/cm`)
-                        .then(res => res.json())
-                        .then(json => {
-                        cm = json;
-                        localStorage.setItem("cm", JSON.stringify(cm));
-                        return cm;
-                    });
-                }
-                else {
-                    cm = JSON.parse(localStorage.getItem("cm"));
-                    if (cm.code != locid) {
-                        localStorage.removeItem("cm");
-                        return fetchLatestCm(locid);
-                    }
-                    else
-                        return new Promise(function (resolve, reject) {
-                            resolve(cm);
-                        });
-                }
+                const lat = location.latitude;
+                const lng = location.longitude;
+                const qs = `locale=fr-CA&lat=${lat}&long=${lng}&unit=metric`;
+                const formatLocalTime = (isoStr) => {
+                    const [h, m] = isoStr.split("T")[1].split(":");
+                    return `${parseInt(h)}h${m}`;
+                };
+                return Promise.all([
+                    window.fetch(`${PELMOREX_BASE}/observation?${qs}`).then(r => r.json()),
+                    window.fetch(`${PELMOREX_BASE}/shortterm?${qs}&count=6`).then(r => r.json()),
+                    window.fetch(`${PELMOREX_BASE}/longterm?${qs}&count=15&offset=0`).then(r => r.json()),
+                    window.fetch(`${PELMOREX_BASE}/astronomy/sunrisesunset?lat=${lat}&long=${lng}`).then(r => r.json()),
+                ]).then(([obsJson, stermJson, ltermJson, sunJson]) => {
+                    const o = obsJson.observation;
+                    const sun = sunJson.times[0];
+                    const obs = {
+                        background: o.weatherCode.bgimage,
+                        image_url: obsJson.display.imageUrl,
+                        icon: String(o.weatherCode.icon),
+                        lbl_updatetime: "Mise à jour:",
+                        updatetime: o.time.local.split("T")[1],
+                        updatetime_stamp_gmt: new Date(o.time.utc + "Z").getTime(),
+                        wxc: o.weatherCode.text,
+                        tc: String(o.temperature),
+                        fc: String(o.feelsLike),
+                        wk: String(o.wind.speed),
+                        wu: "km/h",
+                        wd: o.wind.direction,
+                        windDirection_icon: o.wind.direction.toLowerCase().replace(/\./g, "").replace(/-/g, ""),
+                        windGustSpeed_knot: o.wind.gust / 1.852,
+                        wgu: "km/h",
+                        h: String(o.relativeHumidity),
+                        sunrise_gmt: new Date(sun.sunrise).getTime(),
+                        sunrise_time: formatLocalTime(sun.sunrise),
+                        sunset_gmt: new Date(sun.sunset).getTime(),
+                        sunset_time: formatLocalTime(sun.sunset),
+                    };
+                    const sterm = {
+                        periods: stermJson.shortTerm.map(p => ({
+                            stdayforcurrent: moment(p.time.local).format("ddd. H[h]"),
+                            wxc: p.weatherCode.text,
+                            t: String(p.temperature.value),
+                            f: String(p.feelsLike),
+                            icon: String(p.weatherCode.icon),
+                            pp: String(p.pop),
+                            w: String(p.wind.speed),
+                            wd: p.wind.direction,
+                            wu: "km/h",
+                            wg: String(p.wind.gust),
+                            wgu: "km/h",
+                            h: String(p.relativeHumidity),
+                            rr: p.rain.range,
+                            ru: "mm",
+                            sr: "",
+                            su: "",
+                        }))
+                    };
+                    const sevendays = {
+                        periods: ltermJson.longTerm.map(p => ({
+                            sd: moment(p.time.local).format("ddd."),
+                            itd: p.day.weatherCode.text,
+                            ida: String(p.day.weatherCode.icon),
+                            tma: String(p.day.temperature.value),
+                            f: String(p.day.feelsLike),
+                            tm: String(p.night.temperature.value),
+                            pdp: String(p.day.pop),
+                            metric_rain: `${p.rain.value} mm`,
+                            metric_snow: `${p.snow.value} cm`,
+                            w: String(p.day.wind.speed),
+                            wu: "km/h",
+                            wd: p.day.wind.direction,
+                            sun_hrs: String(p.hoursOfSun),
+                            tsl: new Date(p.time.local).getTime(),
+                        }))
+                    };
+                    return {
+                        code: param,
+                        obs,
+                        sterm,
+                        sevendays,
+                        fourteendays: { periods: [] },
+                        daysky: { hourly_data: { days: [] } },
+                    };
+                });
             };
             exports_4("fetchObsRaw", fetchObsRaw = (param) => {
                 exports_4("locid", locid = param);
